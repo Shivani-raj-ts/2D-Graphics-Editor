@@ -67,3 +67,57 @@ void drawLine(int x1, int y1, int x2, int y2) {
         }
     }
 }
+
+
+
+void drawTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
+    drawLine(x1, y1, x2, y2);
+    drawLine(x2, y2, x3, y3);
+    drawLine(x3, y3, x1, y1);
+}
+void drawCircle(int cx, int cy, int radius) {
+    int x = 0;
+    int y = radius;
+    int d = 3 - 2 * radius;
+
+    while(y >= x) {
+        setPixel(cx + x, cy + y);
+        setPixel(cx - x, cy + y);
+        setPixel(cx + x, cy - y);
+        setPixel(cx - x, cy - y);
+
+        setPixel(cx + y, cy + x);
+        setPixel(cx - y, cy + x);
+        setPixel(cx + y, cy - x);
+        setPixel(cx - y, cy - x);
+
+        x++;
+
+        if(d > 0) {
+            y--;
+            d += 4 * (x - y) + 10;
+        }
+        else {
+            d += 4 * x + 6;
+        }
+    }
+}
+
+
+void drawTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
+    drawLine(x1, y1, x2, y2);
+    drawLine(x2, y2, x3, y3);
+    drawLine(x3, y3, x1, y1);
+}
+int main() {
+    int choice;
+
+    clearPicture();
+
+    printf("2D Graphics Editor\n");
+    printf("Canvas size: %d x %d\n", WIDTH, HEIGHT);
+    printf("Use coordinates x y.\n");
+    printf("x range: 0 to %d\n", WIDTH - 1);
+    printf("y range: 0 to %d\n", HEIGHT - 1);
+
+
